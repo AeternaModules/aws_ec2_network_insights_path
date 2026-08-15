@@ -24,11 +24,11 @@ output "ec2_network_insights_paths_destination_port" {
 }
 output "ec2_network_insights_paths_filter_at_destination" {
   description = "Map of filter_at_destination values across all ec2_network_insights_paths, keyed the same as var.ec2_network_insights_paths"
-  value       = { for k, v in aws_ec2_network_insights_path.ec2_network_insights_paths : k => v.filter_at_destination if v.filter_at_destination != null && length(v.filter_at_destination) > 0 }
+  value       = { for k, v in aws_ec2_network_insights_path.ec2_network_insights_paths : k => one(v.filter_at_destination) if v.filter_at_destination != null && length(v.filter_at_destination) > 0 }
 }
 output "ec2_network_insights_paths_filter_at_source" {
   description = "Map of filter_at_source values across all ec2_network_insights_paths, keyed the same as var.ec2_network_insights_paths"
-  value       = { for k, v in aws_ec2_network_insights_path.ec2_network_insights_paths : k => v.filter_at_source if v.filter_at_source != null && length(v.filter_at_source) > 0 }
+  value       = { for k, v in aws_ec2_network_insights_path.ec2_network_insights_paths : k => one(v.filter_at_source) if v.filter_at_source != null && length(v.filter_at_source) > 0 }
 }
 output "ec2_network_insights_paths_protocol" {
   description = "Map of protocol values across all ec2_network_insights_paths, keyed the same as var.ec2_network_insights_paths"
